@@ -1,0 +1,51 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block title %}Main Menu{% endblock %}
+
+{% block content %}
+
+    <body>
+    <p class="text-center" style="padding: 10px;text-align: center;">
+        <a href="{% url 'app:menu' %}" class="text-reset text-decoration-none">
+            <img src="{% static 'app/clipboard-image.png' %}" style="text-align: center;display: inline;margin-top: 30px;">
+            <h1 class="fw-semibold text-center" style="font-size: 96PX;">GOO-D-UCK BA-D-UCK</h1>
+        </a>
+        <a class="btn btn-primary" href="{% url 'app:report' %}" role="button" style="margin-top: 50PX;width: 350PX;height: 50PX;font-size: 24PX;text-align: center;display: block;margin-left: 785px;background: #0E5415;border-radius: 100px;">Make a fly tipping report</a>
+        <a class="btn btn-primary" href="{% url 'app:collect' %}" role="button" style="margin-top: 10PX;width: 350PX;height: 50PX;font-size: 24PX;text-align: center;display: block;margin-left: 785px;background: #0E5415;border-radius: 100px;">Collect some fly tipping</a>
+        <a class="btn btn-primary" href="{% url 'app:leaderboard' %}" role="button" style="margin-top: 10PX;width: 350PX;height: 50PX;font-size: 24PX;text-align: center;display: block;margin-left: 785px;background: #0E5415;border-radius: 100px;">View Leaderboard</a>
+        <div class="row mx-0 mt-1">
+            <div class="w-auto mx-auto">
+                <p class="text-center" style="margin-top: 40px;font-size: 30px;">You have <span style="border: 2px solid rgb(0,0,0);padding: 2px;">{{ request.user.profile.points }}</span>&nbsp;Points</p>
+                <div style="display: flex; font-size: 28px">
+                    <p class="text-center" style="margin-top: 0;font-size: 30px;">Your duck rank is:</p>
+                    {% if item.rank == item.DIAMOND %}
+                        <img style="border: 2px solid rgb(0,0,0);padding: 2px;width:45px;" src="{% static 'app/diamond_duck.png' %}">
+                    {% elif item.rank == iteme.GOLD %}
+                        <img style="border: 2px solid rgb(0,0,0);padding: 2px;width:45px;" src="{% static 'app/gold_duck.png' %}">
+                    {% elif item.rank == item.SILVER %}
+                        <img style="border: 2px solid rgb(0,0,0);padding: 2px;width:45px;" src="{% static 'app/silver_duck.png' %}">
+                    {% elif item.rank == item.BRONZE %}
+                        <img style="border: 2px solid rgb(0,0,0);padding: 2px;width:45px;" src="{% static 'app/bronze_duck.png' %}">
+                    {% endif %}
+                    {% if item.emoji != None %}<p>{{  item.emoji }}</p>{% endif %}
+                </div>
+                {% if request.user.profile.colour == "#000000" %}
+                    <p class="text-center" style="margin-top: 0;font-size: 30px;text-decoration: line-through;">You have no custom colour</p>
+                {% else %}
+                    <p class="text-center" style="margin-top: 0;font-size: 30px;">Your custom color is:&nbsp<span style="background:{{ request.user.profile.colour }}; padding: 2px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></p>
+                {% endif %}
+                {% if request.user.profile.emoji == None %}
+                    <p class="text-center" style="margin-top: 0;font-size: 30px;text-decoration: line-through;">You have no custom emoji</p>
+                {% else %}
+                    <p class="text-center" style="margin-top: 0;font-size: 30px;">Your custom emoji is: <span style="border: 2px solid rgb(0,0,0);padding: 2px;">{{ request.user.profile.emoji }}</span></p>
+                {% endif %}
+            </div>
+        </div>
+
+        <script src="{% static 'app/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'app/extra_js/OsmEmbed.js' %}"></script>
+    </body>
+
+{% endblock content %}

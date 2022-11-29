@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block title %}Submit a Report of Fly Tipping{% endblock %}
+
+{% block content %}
+
+    <body style="text-align: center;margin: 30px;">
+        <a href="{% url 'app:menu' %}" class="text-reset text-decoration-none">
+            <img src="{% static 'app/clipboard-image.png' %}" style="padding: 10px; text-align: center;">
+            <h1 class="fw-semibold" style="font-size: 96PX;">GOO-D-UCK BA-D-UCK</h1>
+        </a>
+        <p style="margin-top: 100px;font-size: 30px;text-align: left;"><button class="btn btn-primary" type="button" style="margin-left: 1080px;position: fixed;display: inline-block;border-radius: 10px;width: 250px;height: 50px;font-size: 24px;background: #d9d9d9;color: #A3A3A3;border-color: #D9D9D9;">Grab GPS Location</button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Lat:&nbsp;<input type="text" style="width: 200px;border-width: 3px;" placeholder="-999.999999" readonly="">&nbsp; &nbsp; Long:&nbsp;<input type="text" style="width: 200px;border-width: 3px;" placeholder="-999.999999" maxlength="11" minlength="1" required="" readonly=""></p>
+        <p style="margin-top: 100px;font-size: 30px;text-align: center;">Select image:&nbsp;<input type="file" style="width: 370px;">&nbsp;</p>
+        <p style="margin-top: 100px;font-size: 30px;text-align: center;"></p><button class="btn btn-primary text-center" type="button" style="margin-top: 10PX;width: 350PX;height: 50PX;font-size: 24PX;text-align: center;display: block;margin-left: 700px;background: #0E5415;border-radius: 100px;padding: 0;position: fixed;">Submit Fly-Tipping Report</button>
+        <script src="{% static 'app/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'app/extra_js/OsmEmbed.js' %}"></script>
+    </body>
+
+{% endblock content %}

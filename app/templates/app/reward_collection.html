@@ -1,0 +1,66 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block title %}Rewards Collection{% endblock %}
+
+{% block content %}
+
+    <body style="margin-top: 30px;text-align: center;">
+        <a href="{% url 'app:menu' %}" class="text-reset text-decoration-none">
+            <img src="{% static 'app/clipboard-image.png' %}" style="padding: 10px;">
+            <h1 class="fw-semibold" style="font-size: 96PX;">GOO-D-UCK BA-D-UCK</h1>
+        </a>
+        <p style="font-size: 30px;text-align: center;color: rgb(66,195,45);font-weight: bold;">Congratulations! You gained {{ new_points }}&nbsp;<span style="background-color: var(--bs-body-bg);">duck&nbsp;</span><br>points for collecting/reporting some fly tipping.</p>
+        <p style="font-size: 30px;text-align: center;color: rgb(0,0,0);font-weight: bold;">You have&nbsp;<span style="border-width: 2px;border-style: solid;border-top-color: rgb(0,;border-right-color: 0,;border-bottom-color: 0);border-left-color: 0,;padding: 2px;">{{ user_updated.points }}</span>&nbsp;points</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p style="font-size: 30px;font-weight: bold;">Duck Prizes</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <p style="font-size: 30px;">
+                            <button class="btn btn-primary" type="submit" style="width: 400px;font-size: 30px;color: #a3a3a3;background: #d9d9d9;border-color: #d9d9d9;">Choose Custom Colour</button>
+                            <input name="colour" required type="color"><span>Cost: 25</span>
+                            <input type="hidden" name="shop" value="colour">
+                        </p>
+                    </form>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit" style="width: 400px;font-size: 30px;background: #d9d9d9;border-color: #d9d9d9;color: #a3a3a3;display: inline">Choose Custom Emoji</button>
+                        <input style="display: inline" type="text" maxlength="7" required name="emoji">
+                        <p style="font-size: 30px;display: inline;">Cost: 50</p>
+                        <input type="hidden" name="shop" value="emoji">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <p style="font-size: 30px;font-weight: bold;">The Duck Wheel</p>
+                    <div style="position: relative; ">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="transform: rotate(-90deg) translateY(-50%); position: absolute; right: calc(50% - 175px); top: 50%; z-index:10;" width="16px" height="16px">
+
+                            <polygon points="50, 13.397 100, 100 0, 100"></polygon>
+                        </svg>
+                        <img class="rotate" src="https://cdn.discordapp.com/attachments/1029817839936360509/1035978054998163456/wheel.png" alt="The Duck Wheel" ;="" width="350px" height="350px" style="">
+                        <style>.rotate {
+                          animation: rotation 4s infinite linear;
+                        }
+
+                        @keyframes rotation {
+                          from {
+                            transform: rotate(0deg);
+                          }
+                          to {
+                            transform: rotate(359deg);
+                          }
+                        }
+                        </style>
+                    </div>
+                    <p>You won: {{ prize }}</p>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'app/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'app/extra_js/OsmEmbed.js' %}"></script>
+    </body>
+
+{% endblock content %}

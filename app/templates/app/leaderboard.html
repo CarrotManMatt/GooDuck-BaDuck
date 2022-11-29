@@ -1,0 +1,75 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block content %}
+    <body style="margin-top: 80px;text-align: center;">
+        <a href="{% url 'app:menu' %}" class="text-reset text-decoration-none">
+            <img src="{% static 'app/clipboard-image.png' %}" style="padding: 10px;">
+            <h1 class="fw-semibold" style="font-size: 96PX;">GOO-D-UCK BA-D-UCK</h1>
+        </a>
+        <div class="container">
+            <div class="row" style="padding-left:0; margin-left:-180px; margin-right:-244px;">
+                <div class="col-md-4" style="background: #DCF8FF;display: block;margin-right: 30px;padding-right: 0;margin-left: -66px;">
+                    <p style="font-size: 30px;font-weight: bold;">Goo-D-ucks</p>
+                    {% for item in gooducks %}
+                        <div style="display: flex; font-size: 28px">
+                            <p>{{ forloop.counter }}. <span style="color: {{ item.colour }};">@{{ item.base_user.username }}</span></p>
+                            {% if item.rank == item.DIAMOND %}
+                                <img style="width:45px;" src="{% static 'app/diamond_duck.png' %}">
+                            {% elif item.rank == iteme.GOLD %}
+                                <img style="width:45px;" src="{% static 'app/gold_duck.png' %}">
+                            {% elif item.rank == item.SILVER %}
+                                <img style="width:45px;" src="{% static 'app/silver_duck.png' %}">
+                            {% elif item.rank == item.BRONZE %}
+                                <img style="width:45px;" src="{% static 'app/bronze_duck.png' %}">
+                            {% endif %}
+                            {% if item.emoji != None %}<p>{{  item.emoji }}</p>{% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-4" style="background: #F79F9F;margin-right: 30px;">
+                    <p style="font-size: 30px;font-weight: bold;">Ba-D-ucks</p>
+                    {% for item in baducks %}
+                        <div style="display: flex; font-size: 28px">
+                            <p>{{ forloop.counter }}. <span style="color: {{ item.colour }};">@{{ item.base_user.username }}</span></p>
+                            {% if item.rank == item.DIAMOND %}
+                                <img style="width:45px;" src="{% static 'app/diamond_duck.png' %}">
+                            {% elif item.rank == iteme.GOLD %}
+                                <img style="width:45px;" src="{% static 'app/gold_duck.png' %}">
+                            {% elif item.rank == item.SILVER %}
+                                <img style="width:45px;" src="{% static 'app/silver_duck.png' %}">
+                            {% elif item.rank == item.BRONZE %}
+                                <img style="width:45px;" src="{% static 'app/bronze_duck.png' %}">
+                            {% endif %}
+                            {% if item.emoji != None %}<p>{{  item.emoji }}</p>{% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-4" style="background: #578940;">
+                    <p style="font-size: 30px;font-weight: bold;">Wall Of Shame</p>
+                    {% for item in wallofshame %}
+                        <div style="display: flex; font-size: 28px">
+                        <p>{{ forloop.counter }}. <span style="color: {{ item.colour }};">@{{ item.base_user.username }}</span></p>
+                            {% if item.rank == item.DIAMOND %}
+                                <img style="width:45px;" src="{% static 'app/diamond_duck.png' %}">
+                            {% elif item.rank == iteme.GOLD %}
+                                <img style="width:45px;" src="{% static 'app/gold_duck.png' %}">
+                            {% elif item.rank == item.SILVER %}
+                                <img style="width:45px;" src="{% static 'app/silver_duck.png' %}">
+                            {% elif item.rank == item.BRONZE %}
+                                <img style="width:45px;" src="{% static 'app/bronze_duck.png' %}">
+                            {% endif %}
+                            {% if item.emoji != None %}<p>{{  item.emoji }}</p>{% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'app/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'app/extra_js/OsmEmbed.js' %}"></script>
+    </body>
+
+{% endblock content %}

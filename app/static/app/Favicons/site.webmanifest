@@ -1,0 +1,14 @@
+{
+    "name": "Goo-D-uck Ba-D-uck",
+    "short_name": "Goo-D-uck Ba-D-uck",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#a8e6ae",
+    "background_color": "#a8e6ae",
+    "display": "standalone"
+}

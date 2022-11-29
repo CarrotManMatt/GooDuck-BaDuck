@@ -1,0 +1,92 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block meta %}
+    <style>
+        .cc {position: relative;}
+        .circle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        background: rgba(51, 170, 51, .2);   /*  40% opaque green */
+        pointer-events:none ;
+        transform: translate(-50%,-50%);
+        border-radius: 50%;
+        height: 300px;
+        width: 300px;
+        border: 10px dashed #0E5415;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <body onload="get_location();">
+        <a href="{% url 'app:menu' %}" class="text-reset text-decoration-none">
+            <div class="row mx-0 mt-1">
+                <div class="w-auto mx-auto">
+                    <img src="{% static 'app/clipboard-image.png' %}" style="padding: 10px;">
+                </div>
+            </div>
+            <h1 class="fw-semibold text-center" style="font-size: 96PX;">GOO-D-UCK BA-D-UCK</h1>
+        </a>
+        <form method="post">
+            {% csrf_token %}
+            <div class="container mb-0 pb-0">
+                <div class="row">
+                    <div class="col-md-6">
+                            <div class="cc">
+                                <iframe style="pointer-events:none" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.968986012746!2d-1.9002226839002678!3d52.47969724696729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4e0164afebddc377!2zNTLCsDI4JzQ2LjkiTiAxwrA1Myc1Mi45Ilc!5e0!3m2!1sen!2suk!4v1667100118985!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <div id="circle" class="circle"></div>
+                            </div>
+                            <div class="row mx-0 mt-0 pt-0">
+                                <div class="w-auto mx-auto">
+                                    <div class="slider">
+                                        <input id="id_radius" name="radius" required type="range" value="100" min="1" max="200" oninput="let radius = parseInt(this.value) + 200; document.getElementById('circle').style.height = radius + 'px';document.getElementById('circle').style.width = radius + 'px';">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center">Drag the slider to change the search radius</p>
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        <input type="text" name="username" maxlength="10" required id="id_username" style="transform: scale(2.10);text-align: center;display: block;margin-left: 350px;margin-top: 100px;border-radius: 5px;background: var(--bs-gray-400);" placeholder="Display Name">
+                        <input type="password" name="password1" required id="id_password1" autocomplete="new-password" style="transform: scale(2.10);text-align: center;display: block;margin-top: 40px;margin-left: 350px;border-radius: 5px;background: var(--bs-gray-400);" placeholder="Password">
+                        <input type="password" name="password2" required id="id_password2" autocomplete="new-password" style="transform: scale(2.10);text-align: center;display: block;margin-top: 40px;margin-left: 350px;border-radius: 5px;background: var(--bs-gray-400);" placeholder="Confirm Password">
+                        <input type="tel" name="phone_number" maxlength="128" required id="id_phone_number" style="transform: scale(2.10);text-align: center;display: block;margin-top: 40px;margin-left: 350px;border-radius: 5px;background: var(--bs-gray-400);" placeholder="Phone Number">
+                        <input type="hidden" name="longitude" required id="id_longitude" value="-1.9002226839002678">
+                        <input type="hidden" name="latitude" required id="id_latitude" value="52.47969724696729">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mx-0 mt-0 pt-0">
+                <div class="w-auto mx-auto">
+                    <button class="btn btn-primary" type="submit" style="margin-top: 100px;width: 300px;height: 50px;font-size: 20px;background: #0E5415;border-radius: 100px;">Create an Account</button>
+                </div>
+            </div>
+        </form>
+
+        <script src="{% static 'app/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'app/extra_js/OsmEmbed.js' %}"></script>
+        <script>
+            let lat_label = document.getElementById("id_longitude");
+            let long_label = document.getElementById("id_latitude")
+            function get_location() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+
+            function showPosition(position) {
+                lat_label.value = position.coords.latitude;
+                long_label.value = position.coords.longitude;
+            }
+        </script>
+    </body>
+
+{% endblock content %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {% load static %}
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width = device-width, initial-scale = 1">
+
+        <link rel="shortcut icon" type="image/png" href="{% static 'app/Favicons/favicon.ico' %}"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/Favicons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/Favicons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/Favicons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'app/Favicons/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'app/Favicons/safari-pinned-tab.svg' %}" color="#a8e6ae">
+        <meta name="apple-mobile-web-app-title" content="Goo-D-uck Ba-D-uck">
+        <meta name="application-name" content="Goo-D-uck Ba-D-uck">
+        <meta name="msapplication-TileColor" content="#00a300">
+        <meta name="theme-color" content="#a8e6ae">
+
+        <link rel="stylesheet" href="{% static 'app/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css">
+        <link rel="stylesheet" href="{% static 'app/extra_css/Simple-Slider-Simple-Slider.css' %}">
+
+        <title>
+            {% block title %}{% endblock %} | Goo-D-uck Ba-D-uck
+        </title>
+
+        {% block meta %}{% endblock %}
+    </head>
+
+    {% block content %}{% endblock %}
+</html>
